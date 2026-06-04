@@ -46,10 +46,11 @@ jobs:
           touch local.properties
           chmod +x gradlew
           ./gradlew makePluginsJson --continue || true
+          find . -name "plugins.json" 2>/dev/null
           cp **/build/*.cs3 $GITHUB_WORKSPACE/builds || true
           cp **/build/*.jar $GITHUB_WORKSPACE/builds || true
           cp build/plugins.json $GITHUB_WORKSPACE/builds || true
-
+          
       - name: Push builds
         run: |
           cd $GITHUB_WORKSPACE/builds
